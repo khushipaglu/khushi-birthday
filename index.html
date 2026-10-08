@@ -374,6 +374,50 @@ p {
     font-weight: 500;
 }
 
+/* ---------- SECRET HINT ---------- */
+
+.hint-btn {
+    background: transparent;
+    border: 1px solid rgba(255,194,215,.4);
+    color: #ffc2d7;
+    padding: 10px 20px;
+    border-radius: 999px;
+    margin-top: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.hint-btn:hover {
+    background: rgba(255,194,215,.1);
+    transform: translateY(-2px);
+}
+
+.secret-hint {
+    display: none;
+    margin: 15px auto 0;
+    max-width: 400px;
+    color: #ffd9e5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.secret-hint.show {
+    display: block;
+    animation: hintFade .4s ease;
+}
+
+@keyframes hintFade {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ---------- FINAL ---------- */
 
 #final {
@@ -494,6 +538,202 @@ section.active {
     z-index: 5;
 }
 
+/* ---------- PHOTO MEMORIES ---------- */
+
+#photos {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 190, 215, .35), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(255, 220, 230, .4), transparent 25%),
+        linear-gradient(135deg, #fff0f5, #fff9fb);
+}
+
+.photo-page {
+    width: min(900px, 100%);
+    text-align: center;
+}
+
+.floating-hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-hearts span {
+    position: absolute;
+    bottom: -30px;
+    font-size: 24px;
+    opacity: .35;
+    animation: floatHeart 7s linear infinite;
+}
+
+.floating-hearts span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 55%;
+    animation-delay: 4s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 75%;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 90%;
+    animation-delay: 3s;
+}
+
+@keyframes floatHeart {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+    to {
+        transform: translateY(-700px) rotate(360deg);
+    }
+}
+
+.photo-page h2 {
+    color: #4b2937;
+    margin-bottom: 12px;
+    text-shadow: 0 0 12px rgba(255, 160, 190, .35);
+}
+
+.photo-subtitle {
+    color: #705561;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-style: italic;
+    opacity: .85;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.photo-card {
+    background: white;
+    padding: 10px 10px 18px;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px rgba(80,40,60,.12);
+    border: 1px solid rgba(255, 190, 210, .45);
+    transition: .35s ease;
+}
+
+.photo-card:hover {
+
+    transform: translateY(-7px) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(80,40,60,.18);
+    filter: brightness(1.02);
+}
+
+.photo-card:nth-child(2):hover {
+    transform: translateY(-7px) rotate(1deg);
+}
+
+.photo-card:nth-child(3):hover {
+    transform: translateY(-7px) rotate(0.5deg);
+}
+
+.photo-card:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.photo-card:nth-child(3) {
+    transform: rotate(-0.5deg);
+}
+
+.photo-card {
+    position: relative;
+    overflow: hidden;
+    transform: rotate(-1deg);
+}
+
+.photo-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,.45) 50%,
+        transparent 80%
+    );
+    transform: translateX(-100%);
+    transition: .7s ease;
+}
+
+.photo-card:hover::after {
+    transform: translateX(100%);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+}
+
+.photo-note {
+    margin-top: 10px;
+    padding-bottom: 5px;
+    color: #6d505c;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+.photo-note::before {
+    content: "♡";
+    margin-right: 6px;
+    opacity: .7;
+}
+
+.previous-btn {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid rgba(75, 41, 55, .25);
+    color: #4b2937;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.previous-btn:hover {
+    background: rgba(255, 190, 215, .25);
+    transform: translateX(-4px);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+    }
+
+    .photo-card img {
+        height: auto;
+        max-height: 500px;
+    }
+}
+
 </style>
 </head>
 
@@ -565,6 +805,10 @@ section.active {
 
         <button class="btn" onclick="go('special')">
             Keep going 💗
+        </button>
+
+        <button class="previous-btn" onclick="go('home')">
+        ← Previous
         </button>
 
     </div>
@@ -639,6 +883,10 @@ section.active {
         <button class="btn" onclick="go('letter')">
             There's a little letter 💌
         </button>
+        
+        <button class="previous-btn" onclick="go('birthday')">
+        ← Previous
+        </button>
 
     </div>
 
@@ -702,6 +950,10 @@ section.active {
         <button class="btn" onclick="go('cake')">
             Make a birthday wish 🎂
         </button>
+        
+        <button class="previous-btn" onclick="go('special')">
+        ← Previous
+        </button>
 
     </div>
 
@@ -732,6 +984,10 @@ section.active {
 
             <button class="btn" onclick="makeWish()">
                 Wish Made ✨
+            </button>
+             
+            <button class="previous-btn" onclick="go('letter')">
+            ← Previous
             </button>
 
             <div class="wish-message" id="wishMessage"></div>
@@ -770,6 +1026,10 @@ section.active {
 
         <button class="btn" onclick="go('reasons')">
             A few reasons to smile 🌷
+        </button>
+        
+        <button class="previous-btn" onclick="go('cake')">
+        ← Previous
         </button>
 
     </div>
@@ -855,7 +1115,9 @@ section.active {
         <button class="btn" onclick="go('secret')">
             There's still a secret 👀
         </button>
-
+        <button class="previous-btn" onclick="go('gift')">
+        ← Previous
+        </button>
     </div>
 
 </section>
@@ -893,17 +1155,80 @@ section.active {
             <br>
 
             <button class="btn" onclick="checkSecret()">
-                Unlock 🔐
+             Unlock 🔐
             </button>
 
-            <div class="secret-result" id="secretResult"></div>
+            <button class="hint-btn" onclick="showHint()">
+            💡 Need a hint?
+            </button>
 
+            <div class="secret-hint" id="secretHint">
+             It's a favourite word of the person who genuinely cares about you. 🌷
+             it can be someone's name.🫠🎀
+            </div>
+
+            <div class="secret-result" id="secretResult"></div>
         </div>
 
     </div>
 
 </section>
 
+<!-- ================= PHOTOS ================= -->
+
+<section id="photos">
+
+<div class="floating-hearts">
+    <span>♡</span>
+    <span>♡</span>
+    <span>♡</span>
+    <span>♡</span>
+    <span>♡</span>
+</div>
+
+    <div class="container photo-page">
+
+        <div class="small-title">
+            A few beautiful memories ✨
+        </div>
+
+        <h2>
+            Khushi Ji 📸
+        </h2>
+
+        <p class="photo-subtitle">
+            Some moments deserve their own little corner. 🌷
+        </p>
+
+        <div class="photo-gallery">
+
+            <div class="photo-card">
+                <img src="khushi-photo-1.png" alt="Khushi Photo 1">
+                <div class="photo-note">🌸 A beautiful moment</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="khushi-photo-2.png" alt="Khushi Photo 2">
+                <div class="photo-note">✨ A lovely smile</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="khushi-photo-3.png" alt="Khushi Photo 3">
+                <div class="photo-note">💗 Stay happy always</div>
+            </div>
+
+        </div>
+
+        <button class="btn" onclick="go('final')">
+            Continue 💗
+        </button>
+        <button class="previous-btn" onclick="go('secret')">
+        ← Previous
+        </button>
+
+    </div>
+
+</section>
 
 <!-- ================= FINAL ================= -->
 
@@ -932,11 +1257,12 @@ section.active {
         <button class="btn" onclick="go('home')">
             Start Again ↺
         </button>
-
+        <button class="previous-btn" onclick="go('photos')">
+          ← Previous
+        </button>
     </div>
 
 </section>
-
 
 <!-- MUSIC / AMBIENCE BUTTON -->
 
@@ -1071,15 +1397,21 @@ function checkSecret() {
             '🔓 Secret unlocked! You found it! 💗';
 
         setTimeout(() => {
-            go('final');
+            go('photos');
         }, 1000);
 
     } else {
 
-        result.innerHTML =
-            "Hmm... that doesn't seem to be it 👀";
+    result.innerHTML =
+        "Hmm... that doesn't seem to be it 👀";
+}
 
-    }
+}
+
+
+function showHint() {
+    const hint = document.getElementById('secretHint');
+    hint.classList.toggle('show');
 }
 
 
